@@ -59,6 +59,8 @@ export interface IScoreboard {
    */
   setMatch(home: string, away: string): string;
 
+  getMatchById(id: string): Readonly<Match> | undefined;
+
   /**
    * Retrieves a summary of all active matches
    * @returns An array of Match objects, read-only
