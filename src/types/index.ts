@@ -74,6 +74,10 @@ export interface IScoreboard {
    */
   updateScore(id: string, homeScore?: number, awayScore?: number): void;
 
+  /**
+   * Ends ongoing match by its ID
+   * @param id ID of the match to end
+   */
   finishMatch(id: string): void;
 
   /**
