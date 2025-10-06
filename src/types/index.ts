@@ -66,6 +66,8 @@ export interface IScoreboard {
    */
   getMatchById(id: string): Readonly<Match> | undefined;
 
+  getMatchByTeamNames(home: string, away: string): Readonly<Match> | undefined;
+
   /**
    * Updates the score of the match with the given ID
    * @param id ID of the match to update
