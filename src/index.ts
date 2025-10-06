@@ -33,6 +33,11 @@ class Scoreboard implements IScoreboard {
     return id;
   }
 
+  getMatchById(id: string): Readonly<Match> | undefined {
+    const match = this.matches.get(id);
+    return match;
+  }
+
   getSummary(): ReadonlyArray<Match> {
     return Array.from(this.matches.values()).map((m) => Object.freeze(m));
   }

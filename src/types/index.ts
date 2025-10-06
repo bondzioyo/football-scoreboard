@@ -60,6 +60,13 @@ export interface IScoreboard {
   setMatch(home: string, away: string): string;
 
   /**
+   * Retrieves a single match by its ID
+   * @param id ID of the match to retrieve
+   * @returns A read-only Match object or undefined
+   */
+  getMatchById(id: string): Readonly<Match> | undefined;
+
+  /**
    * Retrieves a summary of all active matches
    * @returns An array of Match objects, read-only
    */
