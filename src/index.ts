@@ -69,7 +69,14 @@ class Scoreboard implements IScoreboard {
   }
 
   getSummary(): ReadonlyArray<Match> {
-    return Array.from(this.matches.values()).map((m) => Object.freeze(m));
+    return Array.from(this.matches.values())
+      .sort((a, b) => {
+        const goalsA = a.scoreAway + a.scoreHome;
+        const goalsB = b.scoreAway + b.scoreHome;
+        if (goalsA !== goalsB) return goalsB - goalsA;
+        return b.createdAt - a.createdAt;
+      })
+      .map((m) => Object.freeze(m));
   }
 }
 
