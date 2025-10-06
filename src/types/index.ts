@@ -66,6 +66,8 @@ export interface IScoreboard {
    */
   getMatchById(id: string): Readonly<Match> | undefined;
 
+  updateScore(id: string, homeScore?: number, awayScore?: number): void;
+
   /**
    * Retrieves a summary of all active matches
    * @returns An array of Match objects, read-only

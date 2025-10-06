@@ -38,6 +38,28 @@ class Scoreboard implements IScoreboard {
     return match;
   }
 
+  updateScore(id: string, scoreHome?: number, scoreAway?: number) {
+    const match = this.matches.get(id);
+
+    if (!match) throw new Error("Match not found");
+
+    if (scoreHome !== undefined && scoreHome < match.scoreHome) {
+      throw new Error(
+        `Updated home score (${scoreHome}) cannot be lower than current score (${match.scoreHome})`
+      );
+    }
+
+    if (scoreAway !== undefined && scoreAway < match.scoreAway) {
+      throw new Error(
+        `Updated away score (${scoreAway}) cannot be lower than current score (${match.scoreAway})`
+      );
+    }
+
+    match["scoreHome"] = scoreHome ?? match.scoreHome;
+    match["scoreAway"] = scoreAway ?? match.scoreAway;
+    match["updatedAt"] = Date.now();
+  }
+
   getSummary(): ReadonlyArray<Match> {
     return Array.from(this.matches.values()).map((m) => Object.freeze(m));
   }
