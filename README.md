@@ -47,7 +47,7 @@ Simple library for managing live football matches.
 
 #### `getMatchByTeamNames`
 
-```http
+```ts
   getMatchByTeamNames(home: string, away: string): Readonly<Match> | undefined;
 ```
 
