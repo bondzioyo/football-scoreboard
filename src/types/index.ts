@@ -74,6 +74,8 @@ export interface IScoreboard {
    */
   updateScore(id: string, homeScore?: number, awayScore?: number): void;
 
+  finishMatch(id: string): void;
+
   /**
    * Retrieves a summary of all active matches
    * @returns An array of Match objects, read-only
