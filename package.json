@@ -1,17 +1,13 @@
 {
   "name": "@bondzioyo/football-scoreboard",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Simple library for managing live football matches",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/types/index.d.ts",
-  "exports": {
-    "import": "./dist/index.js",
-    "require": "./dist/index.cjs"
-  },
   "scripts": {
     "test": "vitest",
-    "build": "tsup src/index.ts --format esm,cjs --dts --out-dir dist --clean"
+    "build": "tsup src/index.ts --dts --out-dir dist --clean"
   },
   "keywords": [
     "scoreboard",
