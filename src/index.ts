@@ -60,6 +60,14 @@ class Scoreboard implements IScoreboard {
     match["updatedAt"] = Date.now();
   }
 
+  finishMatch(id: string): void {
+    const match = this.matches.get(id);
+    if (!match) throw new Error("Match not found");
+    this.currentlyPlayingTeams.delete(match.home.toLowerCase());
+    this.currentlyPlayingTeams.delete(match.away.toLowerCase());
+    this.matches.delete(id);
+  }
+
   getSummary(): ReadonlyArray<Match> {
     return Array.from(this.matches.values()).map((m) => Object.freeze(m));
   }
