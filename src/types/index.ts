@@ -66,6 +66,12 @@ export interface IScoreboard {
    */
   getMatchById(id: string): Readonly<Match> | undefined;
 
+  /**
+   * Retrieves a single match by its playing teams
+   * @param homeScore New home team score
+   * @param awayScore New away team score
+   * @returns A read-only Match object or undefined
+   */
   getMatchByTeamNames(home: string, away: string): Readonly<Match> | undefined;
 
   /**
