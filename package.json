@@ -1,5 +1,5 @@
 {
-  "name": "football-scoreboard",
+  "name": "@bondzioyo/football-scoreboard",
   "version": "1.0.0",
   "description": "Simple library for managing live football matches",
   "main": "dist/index.cjs",
