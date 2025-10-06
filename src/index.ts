@@ -3,7 +3,7 @@ import { IScoreboard, Match, MatchInternal } from "./types";
 
 class Scoreboard implements IScoreboard {
   private matches = new Map<string, MatchInternal>();
-  private currentlyPlayingTeams = new Set<string>();
+  private currentlyPlayingTeams = new Map<string, string>();
 
   setMatch(home: string, away: string) {
     const homeCaseInsensitive = home.toLowerCase();
@@ -15,7 +15,10 @@ class Scoreboard implements IScoreboard {
     )
       throw new Error("At lest one of the teams is playing a match");
 
-    const id = uuidv4();
+    const homeId = uuidv4();
+    const awayId = uuidv4();
+
+    const id = `${homeId}_${awayId}`;
     const newMatch: MatchInternal = {
       id,
       home,
@@ -27,13 +30,23 @@ class Scoreboard implements IScoreboard {
 
     this.matches.set(id, newMatch);
 
-    this.currentlyPlayingTeams.add(homeCaseInsensitive);
-    this.currentlyPlayingTeams.add(awayCaseInsensitive);
+    this.currentlyPlayingTeams.set(homeCaseInsensitive, homeId);
+    this.currentlyPlayingTeams.set(awayCaseInsensitive, awayId);
 
     return id;
   }
 
   getMatchById(id: string): Readonly<Match> | undefined {
+    const match = this.matches.get(id);
+    return match;
+  }
+
+  getMatchByTeamNames(home: string, away: string): Readonly<Match> | undefined {
+    const homeCaseInsensitive = home.toLowerCase();
+    const awayCaseInsensitive = away.toLowerCase();
+    const homeId = this.currentlyPlayingTeams.get(homeCaseInsensitive);
+    const awayId = this.currentlyPlayingTeams.get(awayCaseInsensitive);
+    const id = `${homeId}_${awayId}`;
     const match = this.matches.get(id);
     return match;
   }
