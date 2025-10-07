@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+. "$(dirname "$0")/h"
+
+echo "🔍 Running tests before commit..."
+pnpm test
